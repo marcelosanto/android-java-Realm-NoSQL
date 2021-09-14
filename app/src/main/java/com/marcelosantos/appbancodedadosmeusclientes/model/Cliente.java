@@ -1,4 +1,4 @@
-package com.marcelosantos.appbancodedadosmeusclientes;
+package com.marcelosantos.appbancodedadosmeusclientes.model;
 
 public class Cliente {
 

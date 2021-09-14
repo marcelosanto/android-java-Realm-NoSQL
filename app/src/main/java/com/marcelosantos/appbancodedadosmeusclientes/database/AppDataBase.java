@@ -1,4 +1,4 @@
-package com.marcelosantos.appbancodedadosmeusclientes;
+package com.marcelosantos.appbancodedadosmeusclientes.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+
+import com.marcelosantos.appbancodedadosmeusclientes.model.Cliente;
 
 import java.util.ArrayList;
 import java.util.List;
