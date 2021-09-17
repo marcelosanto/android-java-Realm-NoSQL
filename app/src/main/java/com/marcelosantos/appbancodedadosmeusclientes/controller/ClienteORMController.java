@@ -3,6 +3,7 @@ package com.marcelosantos.appbancodedadosmeusclientes.controller;
 import com.marcelosantos.appbancodedadosmeusclientes.model.ClienteORM;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class ClienteORMController {
 
@@ -31,19 +32,32 @@ public class ClienteORMController {
 
         realm.beginTransaction();
 
-        assert clienteORM != null;
-        clienteORM.setNome(obj.getNome());
-        clienteORM.setIdade(obj.getIdade());
-        clienteORM.setPreco(obj.getPreco());
-        clienteORM.setIdade(obj.getIdade());
-        clienteORM.setSalario(obj.getSalario());
-        clienteORM.setDataCadastro(obj.getDataCadastro());
-        clienteORM.setHoraCadastro(obj.getHoraCadastro());
-        clienteORM.setAtivo(obj.isAtivo());
+        if (clienteORM != null) {
+            clienteORM.setNome(obj.getNome());
+            clienteORM.setIdade(obj.getIdade());
+            clienteORM.setPreco(obj.getPreco());
+            clienteORM.setIdade(obj.getIdade());
+            clienteORM.setSalario(obj.getSalario());
+            clienteORM.setDataCadastro(obj.getDataCadastro());
+            clienteORM.setHoraCadastro(obj.getHoraCadastro());
+            clienteORM.setAtivo(obj.isAtivo());
 
+            realm.commitTransaction();
+            realm.close();
+        }
 
+    }
+
+    public void delete(ClienteORM obj){
+        Realm realm = Realm.getDefaultInstance();
+
+        realm.beginTransaction();
+
+        RealmResults<ClienteORM> results = realm.where(ClienteORM.class).equalTo("id",
+                obj.getId()).findAll();
+
+        results.deleteAllFromRealm();
         realm.commitTransaction();
         realm.close();
-
     }
 }
