@@ -23,14 +23,15 @@ public class MainActivity extends AppCompatActivity {
         clienteORMController = new ClienteORMController();
 
         ClienteORM orm = new ClienteORM();
-        orm.setNome("Marcello");
+        orm.setId(1);
+        orm.setNome("Marcelo Santos");
         orm.setIdade(30);
-        orm.setPreco(12.98);
-        orm.setSalario(2.000);
-        orm.setDataCadastro("14/09/2021");
-        orm.setHoraCadastro("12:12");
+        orm.setPreco(24.99);
+        orm.setSalario(2.500);
+        orm.setDataCadastro("16/09/2021");
+        orm.setHoraCadastro("00:12");
 
-        clienteORMController.insert(orm);
+        clienteORMController.update(orm);
 
     }
 }
