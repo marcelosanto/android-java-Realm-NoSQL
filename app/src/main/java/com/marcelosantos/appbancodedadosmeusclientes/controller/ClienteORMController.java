@@ -2,8 +2,12 @@ package com.marcelosantos.appbancodedadosmeusclientes.controller;
 
 import com.marcelosantos.appbancodedadosmeusclientes.model.ClienteORM;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.exceptions.RealmException;
 
 public class ClienteORMController {
 
@@ -59,5 +63,29 @@ public class ClienteORMController {
         results.deleteAllFromRealm();
         realm.commitTransaction();
         realm.close();
+    }
+
+    public List<ClienteORM> listar(){
+
+        Realm realm = null;
+
+        RealmResults<ClienteORM> results = null;
+
+        List<ClienteORM> list = new ArrayList<>();
+
+        try {
+            realm = Realm.getDefaultInstance();
+
+            results = realm.where(ClienteORM.class).findAll();
+
+            list = realm.copyToRealm(results);
+
+        } catch (RealmException e) {
+            e.printStackTrace();
+        } finally {
+            realm.close();
+        }
+
+        return list;
     }
 }
